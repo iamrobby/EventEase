@@ -1,0 +1,54 @@
+body{
+  margin:0;
+  font-family: Inter, sans-serif;
+  background:#f1f5f9;
+}
+
+.auth-box,.ticket-box,.admin-box{
+  width:320px;
+  margin:80px auto;
+  background:white;
+  padding:30px;
+  border-radius:12px;
+  text-align:center;
+  box-shadow:0 5px 20px rgba(0,0,0,0.15);
+}
+
+input{
+  width:100%;
+  padding:10px;
+  margin-top:12px;
+}
+
+button{
+  margin-top:15px;
+  padding:10px;
+  width:100%;
+  background:#2563eb;
+  color:white;
+  border:none;
+  border-radius:6px;
+}
+
+.navbar{
+  background:#1f2937;
+  color:white;
+  padding:15px 30px;
+  display:flex;
+  justify-content:space-between;
+}
+
+.event-grid{
+  display:flex;
+  padding:30px;
+  flex-wrap:wrap;
+}
+
+.card{
+  width:250px;
+  background:white;
+  margin:15px;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
