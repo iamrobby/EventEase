@@ -1,0 +1,114 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Homepage styles */
+.homepage-hero {
+  background: linear-gradient(135deg, #3b82f6 0%, #7c3aed 60%);
+  padding: 4rem 0;
+}
+.homepage-hero .lead {
+  color: rgba(255,255,255,0.9);
+}
+.mock-phone {
+  width: 220px;
+}
+.mock-screen {
+  background: rgba(255,255,255,0.06);
+  border-radius: 14px;
+  min-height: 140px;
+}
+.feature-card {
+  border: 1px solid #f1f1f1;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.12); }
+  70% { box-shadow: 0 0 0 12px rgba(255,255,255,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+}
+
+.hero-title {
+  animation: fadeUp 700ms ease both;
+}
+.hero-lead {
+  animation: fadeUp 900ms ease both;
+  animation-delay: 120ms;
+}
+.hero-cta {
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.hero-cta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+.mock-animate {
+  animation: fadeIn 900ms ease both;
+  animation-delay: 220ms;
+  border-radius: 12px;
+}
+.feature-animate {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: fadeUp 600ms ease both;
+}
+.feature-animate:nth-child(1) { animation-delay: 120ms; }
+.feature-animate:nth-child(2) { animation-delay: 220ms; }
+.feature-animate:nth-child(3) { animation-delay: 320ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-title, .hero-lead, .mock-animate, .feature-animate { animation: none; opacity: 1; transform: none; }
+}
