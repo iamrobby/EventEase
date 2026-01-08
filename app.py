@@ -3,8 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from google import genai
 
-# from google.api_core.exceptions import TooManyRequests
-import time
+from google.api_core.exceptions import TooManyRequests
 from reportlab.lib.pagesizes import A4, landscape
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import mm
@@ -12,7 +11,11 @@ from reportlab.lib import colors
 from PyPDF2 import PdfReader, PdfWriter
 import io, os, zipfile
 
-genai.configure(api_key="AIzaSyDF6W5I0TMHDxit-IA519FvknKyQKMiHZU")
+try:
+    genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+except Exception:
+    st.warning("Please set GEMINI_API_KEY in .streamlit/secrets.toml")
+
 
 model = genai.GenerativeModel("models/gemini-2.5-flash")
 
@@ -239,25 +242,28 @@ def zip_certificates(folder):
                 z.write(os.path.join(folder, f), arcname=f)
     return zip_path
 
-st.markdown("### Certificate Generation")
 
-if not st.session_state.certificates_generated:
-            if st.button("Generate Certificates"):
-                with st.spinner("Creating certificates..."):
-                    create_certificate_template()
-                    present_df = st.session_state.merged_data[st.session_state.merged_data["status"] == "Present"]
-                    folder = bulk_generate_certificates(present_df)
-                    st.session_state.certificate_dir = folder
-                    st.session_state.certificates_generated = True
-                st.success("Certificates generated")
+if st.session_state.merged_data is not None:
+    st.markdown("### Certificate Generation")
 
-if st.session_state.certificates_generated:
-            zip_path = zip_certificates(st.session_state.certificate_dir)
+    if not st.session_state.certificates_generated:
+        if st.button("Generate Certificates"):
+            with st.spinner("Creating certificates..."):
+                create_certificate_template()
+                present_df = st.session_state.merged_data[st.session_state.merged_data["status"] == "Present"]
+                folder = bulk_generate_certificates(present_df)
+                st.session_state.certificate_dir = folder
+                st.session_state.certificates_generated = True
+            st.success("Certificates generated")
 
-            with open(zip_path, "rb") as f:
-                st.download_button(
-                    "Download All Certificates (ZIP)",
-                    f,
-                    file_name="Certificates.zip",
-                    mime="application/zip"
-                )
+    if st.session_state.certificates_generated:
+        zip_path = zip_certificates(st.session_state.certificate_dir)
+
+        with open(zip_path, "rb") as f:
+            st.download_button(
+                "Download All Certificates (ZIP)",
+                f,
+                file_name="Certificates.zip",
+                mime="application/zip"
+            )
+
