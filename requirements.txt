@@ -1,0 +1,6 @@
+streamlit
+pandas
+matplotlib
+google-generativeai
+reportlab
+pypdf2
