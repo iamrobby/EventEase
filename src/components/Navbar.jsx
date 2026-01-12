@@ -31,7 +31,7 @@ function MyNavbar() {
             <Nav.Link as={Link} to="/">Home</Nav.Link>
             <Nav.Link as={Link} to="/events" disabled={disableSignOut}>Events</Nav.Link>
             <Nav.Link as={Link} to="/addevents" disabled={disableSignOut}>Add Events</Nav.Link>
-            <Nav.Link href="http://localhost:8501" 
+            <Nav.Link href="https://eventease-k8qrjaelwqv2qeqqd5yaqb.streamlit.app/" 
           target="_blank" 
           rel="noopener noreferrer"
  disabled={disableSignOut}>ReportGen</Nav.Link>
