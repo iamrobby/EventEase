@@ -4,3 +4,4 @@ matplotlib
 google-genai
 reportlab
 pypdf2
+google-api-core
