@@ -31,6 +31,10 @@ function MyNavbar() {
             <Nav.Link as={Link} to="/">Home</Nav.Link>
             <Nav.Link as={Link} to="/events" disabled={disableSignOut}>Events</Nav.Link>
             <Nav.Link as={Link} to="/addevents" disabled={disableSignOut}>Add Events</Nav.Link>
+            <Nav.Link href="http://localhost:8501" 
+          target="_blank" 
+          rel="noopener noreferrer"
+ disabled={disableSignOut}>ReportGen</Nav.Link>
           </Nav>
           <Nav className="ms-auto">
             {user ? (

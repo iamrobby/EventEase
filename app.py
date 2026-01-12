@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-import google.generativeai as genai
+from google import genai
 
 from google.api_core.exceptions import TooManyRequests
 from reportlab.lib.pagesizes import A4, landscape
@@ -11,17 +11,17 @@ from reportlab.lib import colors
 from PyPDF2 import PdfReader, PdfWriter
 import io, os, zipfile
 
+
+st.write("Key found:", "GEMINI_API_KEY" in st.secrets)
+
 try:
-    genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+    client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 except Exception:
     # Fallback or warning if secrets are not set
     st.warning("Please set GEMINI_API_KEY in .streamlit/secrets.toml")
 
-
-model = genai.GenerativeModel("models/gemini-2.5-flash")
-
-st.title("Hello from Colab!")
-st.write("This is a Streamlit app running inside Google Colab.")
+st.title("Event Reporter")
+st.write("This is A Event Report Generator for your help.")
 
 # Initialize session state variables if they don't exist
 if "report_generated" not in st.session_state:
@@ -116,7 +116,7 @@ if st.session_state.merged_data is not None:
     ax.set_title("Department-wise Attendance")
     st.pyplot(fig)
 
-    if model:
+    if client:
         st.markdown("### AI-Report For your Event")
 
         if st.button("Generate Report"):
@@ -149,7 +149,9 @@ Tone:
 Formal, academic, concise.
 """
                 try:
-                    response = model.generate_content(prompt)
+                    response = client.models.generate_content(
+                        model="gemini-2.5-flash",
+                        contents=prompt)
                     st.session_state.ai_report = response.text
                 except TooManyRequests:
                     st.error("Rate limit exceeded. Try again later.")

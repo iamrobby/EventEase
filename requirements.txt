@@ -1,6 +1,6 @@
 streamlit
 pandas
 matplotlib
-google-generativeai
+google-genai
 reportlab
 pypdf2

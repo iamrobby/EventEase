@@ -28,6 +28,7 @@ dist-ssr
 __pycache__/
 *.pyc
 .streamlit/secrets.toml
+venv/
 
 # Generated Files
 *.pdf
