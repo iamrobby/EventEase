@@ -5,7 +5,6 @@ import {getDatabase,ref,set} from "firebase/database";
 import { useEffect,useState } from 'react';
 import {app}from "./firebase";
 import { getFirestore,collection, addDoc } from "firebase/firestore";
-import Signuppage from './pages/signup';
 import Signin from './pages/Signin';
 import "bootstrap/dist/css/bootstrap.min.css"
 import MyNavbar from './components/Navbar';
@@ -13,6 +12,7 @@ import "./App.css";
 import ListEvent from './pages/ListEvent';
 import EventsPage from './pages/Events';
 import Homepage from './pages/Homepage';
+import Signuppage from './pages/signup';
 // const auth=getAuth(app);
 // const firestore=getFirestore(app);
 function App(){
@@ -22,7 +22,7 @@ function App(){
           <MyNavbar/>
     <Routes>
       <Route path="/" element={<Homepage/>} />
-      <Route path="/register" element={<Signuppage />} />
+      <Route path="/register" element={<Signuppage/>} />
       <Route path="/login" element={<Signin/>} />
       <Route path="/events" element={<EventsPage/>} />
       <Route path="/addevents" element={<ListEvent/>} />
