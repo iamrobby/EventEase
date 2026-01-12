@@ -31,8 +31,11 @@ const Signuppage = () => {
       await firebase.signupUserWithEmailandPassword(email,password);
     };
   return (
-    <Form onSubmit={createUser}>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+    <Form className="mt-5"onSubmit={createUser}>
+      <h1>
+        Create Account
+      </h1>
+      <Form.Group className="mb-3 mt-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control onChange={(e)=>{setEmail(e.target.value)}} value={email} type="email" placeholder="Enter email" />
         <Form.Text className="text-muted">
@@ -49,6 +52,10 @@ const Signuppage = () => {
       </Form.Group>
       <Button variant="primary" type="submit">
         Create Account
+      </Button>
+      <br/>
+      <Button className="mt-2"variant="primary" onClick={() => nav('/login')}>
+        Login
       </Button>
     </Form>
   )
