@@ -26,7 +26,9 @@ const Signin = () => {
       console.log("success");
     };
   return (
-    <Form onSubmit={createUser}>
+
+    <Form className="mt-5" onSubmit={createUser}>
+      <h1>Login</h1>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control onChange={(e)=>{setEmail(e.target.value)}} value={email} type="email" placeholder="Enter email" />
@@ -44,6 +46,10 @@ const Signin = () => {
       </Form.Group>
       <Button variant="primary" type="submit">
         Login
+      </Button>
+      <br/>
+      <Button className='mt-2' variant="primary"   onClick={() => nav('/register')}>
+        Create Account
       </Button>
     </Form>
   )
