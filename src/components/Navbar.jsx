@@ -24,38 +24,54 @@ function MyNavbar() {
 
   return (
     <>
-      <Navbar bg="dark"  data-bs-theme="dark">
-        <Container>
-          <Navbar.Brand as={Link} to="/">EventEase</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link as={Link} to="/">Home</Nav.Link>
-            <Nav.Link as={Link} to="/events" disabled={disableSignOut}>Events</Nav.Link>
-            <Nav.Link as={Link} to="/addevents" disabled={disableSignOut}>Add Events</Nav.Link>
-            <Nav.Link href="https://eventease-k8qrjaelwqv2qeqqd5yaqb.streamlit.app/" 
-          target="_blank" 
+      <Navbar bg="dark" data-bs-theme="dark" expand="lg" className="py-2">
+  <Container>
+    <Navbar.Brand as={Link} to="/">EventEase</Navbar.Brand>
+
+    {/* Mobile menu button */}
+    <Navbar.Toggle aria-controls="main-navbar" />
+
+    <Navbar.Collapse id="main-navbar">
+      <Nav className="me-auto">
+        <Nav.Link as={Link} to="/">Home</Nav.Link>
+        <Nav.Link as={Link} to="/events" disabled={disableSignOut}>Events</Nav.Link>
+        <Nav.Link as={Link} to="/addevents" disabled={disableSignOut}>Add Events</Nav.Link>
+        <Nav.Link
+          href="https://eventease-k8qrjaelwqv2qeqqd5yaqb.streamlit.app/"
+          target="_blank"
           rel="noopener noreferrer"
- disabled={disableSignOut}>ReportGen</Nav.Link>
-          </Nav>
-          <Nav className="ms-auto">
-            {user ? (
-              <Button variant="outline-danger" disabled={disableSignOut} onClick={() => {
-                signOut(auth)
-                  .then(() => {
-                    console.log('signout success');
-                    navigate('/login');
-                  })
-                  .catch((err) => console.error(err));
-              }}>
-                Sign Out
-              </Button>
-            ) : (
-              <Button variant="outline-success"  onClick={() => navigate('/register')}>
-                Sign In
-              </Button>
-            )}
-          </Nav>
-        </Container>
-      </Navbar>
+          disabled={disableSignOut}
+        >
+          ReportGen
+        </Nav.Link>
+      </Nav>
+
+      <Nav className="ms-auto align-items-lg-center gap-2 mt-3 mt-lg-0">
+        {user ? (
+          <Button
+            variant="outline-danger"
+            disabled={disableSignOut}
+            onClick={() => {
+              signOut(auth)
+                .then(() => navigate('/login'))
+                .catch(console.error);
+            }}
+          >
+            Sign Out
+          </Button>
+        ) : (
+          <Button
+            variant="outline-success"
+            onClick={() => navigate('/register')}
+          >
+            Sign In
+          </Button>
+        )}
+      </Nav>
+    </Navbar.Collapse>
+  </Container>
+</Navbar>
+
       </>
   );
 }
